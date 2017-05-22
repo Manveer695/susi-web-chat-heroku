@@ -51,7 +51,7 @@ class Form extends React.Component{
             let obj = {};
             obj.data = this.state.userName;
             this.props.cards(obj);
-            axios.get(`http://api.asksusi.com/susi/chat.json?timezoneOffset=-330&q=${this.state.userName}`)
+            axios.get(`https://api.asksusi.com/susi/chat.json?timezoneOffset=-330&q=${this.state.userName}`)
             .then( resp => {
                 this.props.cards(resp);
                 this.setState({
