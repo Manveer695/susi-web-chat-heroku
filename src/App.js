@@ -56,7 +56,7 @@ class Form extends React.Component{
             $.ajax({
 			    method : 'GET',
 			    dataType: 'jsonp',
-			    url : 'http://api.susi.ai/susi/chat.json?timezoneOffset=-330&q='+this.state.userName,
+			    url : 'https://api.susi.ai/susi/chat.json?q='+this.state.userName,
 			    success: function(data){
 			    	func.props.cards(data);
 	                func.setState({
