@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import $ from 'jquery';
 
 var axios = require('axios');
 
 const Card = (props) => {
     let ans,speaker;
-        if(props.data.answers){
+        if(props.answers){
                 speaker = "Susi";
-                ans = props.data.answers[0].actions[0].expression;
+                ans = props.answers[0].actions[0].expression;
             }
             else{
                 speaker = "You";
@@ -51,13 +52,19 @@ class Form extends React.Component{
             let obj = {};
             obj.data = this.state.userName;
             this.props.cards(obj);
-            axios.get(`https://api.asksusi.com/susi/chat.json?timezoneOffset=-330&q=${this.state.userName}`)
-            .then( resp => {
-                this.props.cards(resp);
-                this.setState({
-                    userName: ''
-                });
-            });
+            let func = this;
+            $.ajax({
+			    method : 'GET',
+			    dataType: 'jsonp',
+			    url : 'http://api.susi.ai/susi/chat.json?timezoneOffset=-330&q='+this.state.userName,
+			    success: function(data){
+			    	func.props.cards(data);
+	                func.setState({
+	                    userName: ''
+	                });
+			    }
+			});
+
         }
     }
 	render(){
