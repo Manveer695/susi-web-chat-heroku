@@ -78,7 +78,7 @@ class Form extends React.Component{
                                       })
                                                          }
                                  }
-            type = "text" placeholder="Github Username" required/>
+            type = "text" placeholder="Ask question" required/>
             <button type="submit">Add question</button>
           </form>
         );
